@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-primary">Our Featured Products</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% if products %}
+            {% for product in products %}
+            <div class="col">
+                <div class="card h-100 shadow-lg border-0 rounded-3 overflow-hidden">
+                    <!-- Product Image -->
+                    {% if product.image_url %}
+                    <img src="{{ product.image_url }}" class="card-img-top img-fluid" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='images/default_product.png') }}" class="card-img-top img-fluid" alt="No Image" style="height: 250px; object-fit: cover;">
+                    {% endif %}
+
+                    <!-- Product Details -->
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-center text-dark">{{ product.name }}</h5>
+                        <p class="card-text text-muted">{{ product.description[:80] }}...</p>
+                        <p class="card-text text-primary fw-bold">Price: ${{ "%.2f"|format(product.price) }}</p>
+
+                        <!-- Product Buttons -->
+                        <div class="mt-auto">
+                            <a href="{{ url_for('main.product_detail', id=product.id) }}" class="btn btn-outline-primary w-100 mb-2">
+                                <i class="fas fa-info-circle"></i> View Details
+                            </a>
+                            {% if current_user.is_authenticated %}
+                            <form action="{{ url_for('main.add_to_cart', product_id=product.id) }}" method="POST">
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-warning text-center" role="alert">
+                    No products available at the moment. Please check back later!
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    /* Hover effect for product card */
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .card .btn:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+    }
+</style>
+{% endblock %}

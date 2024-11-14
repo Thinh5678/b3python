@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-primary">Admin Panel</h2>
+
+    <div class="row">
+        <!-- Products Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-success">Products</h3>
+                    <p class="card-text">Manage your product inventory, add, edit or delete products.</p>
+                    <a href="{{ url_for('admin.manage_products') }}" class="btn btn-outline-success btn-lg w-100">Manage Products</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-info">Orders</h3>
+                    <p class="card-text">View and manage customer orders, update order status, and more.</p>
+                    <a href="{{ url_for('admin.manage_orders') }}" class="btn btn-outline-info btn-lg w-100">Manage Orders</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Other Sections -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-warning">Users</h3>
+                    <p class="card-text">Manage user accounts and roles.</p>
+                    <a href="{{ url_for('admin.manage_users') }}" class="btn btn-outline-warning btn-lg w-100">Manage Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+
+    /* Card styles for the admin panel */
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 1.1rem;
+        color: #6c757d;
+    }
+
+    .btn-outline-success, .btn-outline-info, .btn-outline-warning, .btn-outline-danger {
+        font-size: 1.1rem;
+        padding: 12px;
+        border-radius: 25px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-outline-success:hover {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-outline-info:hover {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .btn-outline-warning:hover {
+        background-color: #ffc107;
+        color: white;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    .text-success {
+        color: #28a745 !important;
+    }
+
+    .text-info {
+        color: #17a2b8 !important;
+    }
+
+    .text-warning {
+        color: #ffc107 !important;
+    }
+
+    .text-danger {
+        color: #dc3545 !important;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
+    .mb-4 {
+        margin-bottom: 30px;
+    }
+
+</style>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-header text-center bg-success text-white">
+                <h3 class="mb-0">Create Your Account</h3>
+                <p class="mt-2">Join us today!</p>
+            </div>
+            <div class="card-body p-5">
+                <form method="POST">
+                    <div class="mb-4">
+                        <label for="username" class="form-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Choose a username" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Create a password" required>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center py-4">
+                <p class="mb-0">Already have an account? <a href="{{ url_for('auth.login') }}" class="text-success">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS for Register Page -->
+<style>
+    body {
+        background: linear-gradient(135deg, #42a5f5, #478ed1);
+    }
+    .card {
+        border-radius: 15px;
+    }
+    .card-header {
+        border-bottom: 0;
+    }
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #42a5f5;
+    }
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        transition: all 0.3s ease;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+    }
+    .input-group-text {
+        background-color: #f8f9fa;
+        border-right: 0;
+    }
+    .input-group .form-control {
+        border-left: 0;
+    }
+</style>
+{% endblock %}
