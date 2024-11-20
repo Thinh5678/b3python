@@ -80,6 +80,10 @@
                         </li>
                     {% endif %}
                 </ul>
+                <form class="d-flex" action="{{ url_for('main.search') }}" method="GET">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search products..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
                 
                 <!-- User Authentication Links -->
                 <ul class="navbar-nav">

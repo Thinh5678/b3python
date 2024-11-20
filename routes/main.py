@@ -39,6 +39,16 @@ def cart():
     cart_items = Cart.query.filter_by(user_id=current_user.id).all()
     return render_template('main/cart.html', cart_items=cart_items)
 
+@main.route('/search')
+def search():
+    query = request.args.get('q', '').strip()
+    if query:
+        products = Product.query.filter(Product.name.ilike(f'%{query}%')).all()
+    else:
+        products = []
+    
+    return render_template('main/search_results.html', products=products, query=query)
+
 @main.route('/cart/remove/<int:product_id>')
 @login_required
 def remove_from_cart(product_id):
